@@ -9,14 +9,17 @@
 <body>
   <div id="start-container" class="start-container">
     <h1>🎬 Quiz de Filmes e Séries 📺</h1>
-    <button id="start-btn" class="start-btn">Começar Quiz</button>
+    <button id="start-btn">Iniciar Quiz</button>
   </div>
 
   <div id="quiz-container" class="quiz-container hide">
-    <div id="timer">Tempo: 15</div>
-    <h2 id="question">Pergunta carregando...</h2>
+    <div class="top-bar">
+      <div id="score">Pontos: 0</div>
+      <div id="timer">Tempo: 15</div>
+    </div>
+    <div id="question">Pergunta carregando...</div>
     <div id="answer-buttons" class="btn-grid"></div>
-    <button id="next-btn" class="next-btn">Próxima</button>
+    <button id="next-btn" class="hide">Próxima</button>
   </div>
 
   <script src="script.js"></script>
