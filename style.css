@@ -7,7 +7,6 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  flex-direction: column;
 }
 
 .start-container, .quiz-container {
@@ -20,11 +19,7 @@ body {
   text-align: center;
 }
 
-.hide {
-  display: none;
-}
-
-h1, h2 {
+h1 {
   margin-bottom: 20px;
 }
 
@@ -50,18 +45,44 @@ button:hover {
 }
 
 .correct {
-  background: #4caf50;
+  animation: correctPulse 0.5s ease;
 }
 
 .wrong {
-  background: #e53935;
+  animation: wrongShake 0.5s ease;
 }
 
-#next-btn, #start-btn {
+#next-btn {
   margin-top: 20px;
 }
 
-#timer {
-  font-size: 20px;
-  margin-bottom: 10px;
+.hide {
+  display: none;
+}
+
+/* Top bar com Timer e Score */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+#score {
+  font-weight: bold;
+}
+
+/* Animações */
+@keyframes correctPulse {
+  0% { background-color: #4caf50; }
+  50% { background-color: #81c784; }
+  100% { background-color: #4caf50; }
+}
+
+@keyframes wrongShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
