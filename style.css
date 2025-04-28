@@ -7,9 +7,10 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  flex-direction: column;
 }
 
-.quiz-container {
+.start-container, .quiz-container {
   background: #2c2c2c;
   padding: 30px;
   border-radius: 12px;
@@ -19,7 +20,11 @@ body {
   text-align: center;
 }
 
-h1 {
+.hide {
+  display: none;
+}
+
+h1, h2 {
   margin-bottom: 20px;
 }
 
@@ -52,6 +57,11 @@ button:hover {
   background: #e53935;
 }
 
-#next-btn {
+#next-btn, #start-btn {
   margin-top: 20px;
+}
+
+#timer {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
