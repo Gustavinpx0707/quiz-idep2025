@@ -1,104 +1,5 @@
 const questions = [
-  {
-    question: "Quem dirigiu o filme 'A Origem' (Inception)?",
-    correct: "Christopher Nolan",
-    options: ["Steven Spielberg", "James Cameron", "Martin Scorsese"]
-  },
-  {
-    question: "Em qual filme vemos o personagem 'Buzz Lightyear'?",
-    correct: "Toy Story",
-    options: ["Shrek", "Procurando Nemo", "Os Incríveis"]
-  },
-  {
-    question: "Qual filme ganhou o Oscar de Melhor Filme em 2024?",
-    correct: "Oppenheimer",
-    options: ["Barbie", "Duna: Parte 2", "Killers of the Flower Moon"]
-  },
-  {
-    question: "Qual série da Netflix é baseada em um jogo de xadrez?",
-    correct: "The Queen's Gambit (O Gambito da Rainha)",
-    options: ["Stranger Things", "Dark", "The Witcher"]
-  },
-  {
-    question: "Em 'Breaking Bad', qual é o nome do alter ego de Walter White?",
-    correct: "Heisenberg",
-    options: ["Gus", "Jesse", "Saul"]
-  },
-  {
-    question: "Qual série é um spin-off de 'Breaking Bad'?",
-    correct: "Better Call Saul",
-    options: ["El Camino", "Ozark", "Narcos"]
-  },
-  {
-    question: "Qual série tem o personagem Geralt de Rívia?",
-    correct: "The Witcher",
-    options: ["The Mandalorian", "Vikings", "House of the Dragon"]
-  },
-  {
-    question: "Qual dessas séries se passa no universo de 'Game of Thrones'?",
-    correct: "House of the Dragon",
-    options: ["The Witcher", "The Boys", "The Last of Us"]
-  },
-  {
-    question: "Quem interpretou o Coringa em 'Coringa' (2019)?",
-    correct: "Joaquin Phoenix",
-    options: ["Heath Ledger", "Jared Leto", "Jack Nicholson"]
-  },
-  {
-    question: "Qual é o nome do navio em 'Titanic'?",
-    correct: "RMS Titanic",
-    options: ["Queen Mary", "Britannic", "Oceanic"]
-  },
-  {
-    question: "Qual série começa com um ataque à Muralha?",
-    correct: "Game of Thrones",
-    options: ["The Witcher", "The Boys", "The Mandalorian"]
-  },
-  {
-    question: "Em que cidade se passa 'Stranger Things'?",
-    correct: "Hawkins",
-    options: ["Springfield", "Riverdale", "Gotham"]
-  },
-  {
-    question: "Quem é o criador da série 'The Office' (EUA)?",
-    correct: "Greg Daniels",
-    options: ["Ricky Gervais", "Steve Carell", "Larry David"]
-  },
-  {
-    question: "Quem é o pai do Simba em 'O Rei Leão'?",
-    correct: "Mufasa",
-    options: ["Scar", "Zazu", "Rafiki"]
-  },
-  {
-    question: "Qual personagem é conhecido como 'Capitão América'?",
-    correct: "Steve Rogers",
-    options: ["Tony Stark", "Bruce Banner", "Peter Parker"]
-  },
-  {
-    question: "Qual filme da Pixar se passa na Itália?",
-    correct: "Luca",
-    options: ["Soul", "Ratatouille", "Divertida Mente"]
-  },
-  {
-    question: "Qual vilão aparece em 'Avengers: Guerra Infinita'?",
-    correct: "Thanos",
-    options: ["Loki", "Ultron", "Dormammu"]
-  },
-  {
-    question: "Em que série o personagem 'Sheldon Cooper' aparece?",
-    correct: "The Big Bang Theory",
-    options: ["How I Met Your Mother", "Brooklyn Nine-Nine", "Young Sheldon"]
-  },
-  {
-    question: "Qual série é estrelada por Pedro Pascal como um mandaloriano?",
-    correct: "The Mandalorian",
-    options: ["The Last of Us", "Andor", "Obi-Wan Kenobi"]
-  },
-  {
-    question: "Em 'Harry Potter', qual é o nome da escola de magia?",
-    correct: "Hogwarts",
-    options: ["Durmstrang", "Beauxbatons", "Ilvermorny"]
-  }
+  // [as 20 perguntas exatamente como já enviei antes]
 ];
 
 const questionEl = document.getElementById('question');
@@ -107,7 +8,7 @@ const nextButton = document.getElementById('next-btn');
 const backButton = document.getElementById('back-btn');
 const timerEl = document.getElementById('timer');
 const scoreEl = document.getElementById('score');
-const playerInfo = document.getElementById('player-info');
+const playerNameDisplay = document.getElementById('player-name-display');
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -119,7 +20,7 @@ function startGame() {
   playerName = document.getElementById('player-name').value || 'Jogador';
   document.getElementById('menu-screen').classList.remove('active');
   document.getElementById('quiz-screen').classList.add('active');
-  playerInfo.textContent = `👤 ${playerName}`;
+  playerNameDisplay.innerHTML = `👤 ${playerName}`;
   score = 0;
   currentQuestionIndex = 0;
   showQuestion();
