@@ -1,121 +1,105 @@
 const questions = [
-  {
-    question: "Quem dirigiu o filme 'A Origem' (Inception)?",
-    correct: "Christopher Nolan",
-    options: ["Martin Scorsese", "James Cameron", "Christopher Nolan", "Steven Spielberg"]
-  },
-  {
-    question: "Qual filme ganhou o Oscar de Melhor Filme em 2020?",
-    correct: "Parasita",
-    options: ["1917", "Coringa", "Parasita", "Era Uma Vez em... Hollywood"]
-  },
-  {
-    question: "Quem interpretou o Coringa em 'O Cavaleiro das Trevas'?",
-    correct: "Heath Ledger",
-    options: ["Joaquin Phoenix", "Heath Ledger", "Jared Leto", "Jack Nicholson"]
-  },
-  {
-    question: "Em que ano foi lançado o primeiro filme dos Vingadores?",
-    correct: "2012",
-    options: ["2010", "2012", "2014", "2008"]
-  },
-  {
-    question: "Qual personagem diz a frase 'Eu sou o rei do mundo!'?",
-    correct: "Jack em Titanic",
-    options: ["Forrest Gump", "Tony Stark", "Jack em Titanic", "Simba"]
-  },
-  // adicione até 20 assim
+  { question: "Quem dirigiu o filme 'A Origem' (Inception)?", answer: "Christopher Nolan", options: ["Steven Spielberg", "Martin Scorsese", "Christopher Nolan", "James Cameron"] },
+  { question: "Quem interpretou o Coringa em 'Batman: O Cavaleiro das Trevas'?", answer: "Heath Ledger", options: ["Joaquin Phoenix", "Jack Nicholson", "Heath Ledger", "Jared Leto"] },
+  { question: "Qual filme ganhou o Oscar de Melhor Filme em 2020?", answer: "Parasita", options: ["1917", "Coringa", "Era uma vez em... Hollywood", "Parasita"] },
+  { question: "Qual o nome do hobbit interpretado por Elijah Wood?", answer: "Frodo", options: ["Bilbo", "Frodo", "Sam", "Merry"] },
+  { question: "Qual filme é famoso pela frase 'Say hello to my little friend'?", answer: "Scarface", options: ["O Poderoso Chefão", "Scarface", "Pulp Fiction", "Clube da Luta"] },
+  { question: "Em que filme Leonardo DiCaprio ganhou seu primeiro Oscar?", answer: "O Regresso", options: ["Titanic", "A Origem", "O Regresso", "O Lobo de Wall Street"] },
+  { question: "Quem é o diretor de 'Pulp Fiction'?", answer: "Quentin Tarantino", options: ["Martin Scorsese", "Quentin Tarantino", "Francis Coppola", "Steven Spielberg"] },
+  { question: "Qual é o nome do planeta natal de Superman?", answer: "Krypton", options: ["Terra", "Marte", "Krypton", "Vênus"] },
+  { question: "Qual filme da Disney tem um gênio azul?", answer: "Aladdin", options: ["Aladdin", "Hércules", "Rei Leão", "Mulan"] },
+  { question: "Quem protagonizou 'Missão Impossível'?", answer: "Tom Cruise", options: ["Brad Pitt", "Tom Cruise", "Matt Damon", "George Clooney"] },
+  { question: "Qual é o subtítulo de 'Avatar 2'?", answer: "O Caminho da Água", options: ["Nova Era", "A Lenda de Pandora", "O Caminho da Água", "O Retorno"] },
+  { question: "Em que filme temos a frase 'Eu sou seu pai'?", answer: "Star Wars: O Império Contra-Ataca", options: ["Star Wars: Uma Nova Esperança", "Star Wars: O Império Contra-Ataca", "Star Wars: A Ameaça Fantasma", "Star Wars: O Retorno de Jedi"] },
+  { question: "Quem é o protagonista de 'Matrix'?", answer: "Keanu Reeves", options: ["Brad Pitt", "Tom Cruise", "Keanu Reeves", "Will Smith"] },
+  { question: "Qual o nome da heroína interpretada por Gal Gadot?", answer: "Mulher-Maravilha", options: ["Viúva Negra", "Capitã Marvel", "Jean Grey", "Mulher-Maravilha"] },
+  { question: "Qual filme tem o personagem Jack Sparrow?", answer: "Piratas do Caribe", options: ["Indiana Jones", "Piratas do Caribe", "Gladiador", "Percy Jackson"] },
+  { question: "Quem dirigiu 'Titanic'?", answer: "James Cameron", options: ["Steven Spielberg", "Christopher Nolan", "James Cameron", "Ridley Scott"] },
+  { question: "Qual é o brinquedo cowboy em Toy Story?", answer: "Woody", options: ["Buzz", "Woody", "Jessie", "Zurg"] },
+  { question: "Em que filme aparece o personagem Thanos?", answer: "Vingadores: Guerra Infinita", options: ["Thor", "Vingadores: Guerra Infinita", "Guardiões da Galáxia", "Homem de Ferro 2"] },
+  { question: "Quem é o pai de Simba?", answer: "Mufasa", options: ["Mufasa", "Scar", "Zazu", "Rafiki"] },
+  { question: "Qual o nome da boneca em 'Invocação do Mal'?", answer: "Annabelle", options: ["Anabelle", "Mary", "Annabelle", "Carla"] }
 ];
 
-let currentQuestionIndex = 0;
+let shuffledQuestions = [];
+let currentIndex = 0;
 let score = 0;
-let timerInterval;
-let seconds = 0;
-let playerName = "";
-
-const questionEl = document.getElementById("question");
-const answersEl = document.getElementById("answers");
-const scoreEl = document.getElementById("score");
-const timerEl = document.getElementById("timer");
-const nameDisplayEl = document.getElementById("name-display");
-const menuEl = document.getElementById("menu");
-const quizEl = document.getElementById("quiz-container");
+let timer;
+let timeLeft = 15;
 
 function startGame() {
-  const input = document.getElementById("player-name");
-  playerName = input.value.trim() || "Jogador";
-  nameDisplayEl.textContent = playerName;
+  const name = document.getElementById("nameInput").value || "Jogador";
+  document.getElementById("username").innerText = name;
   score = 0;
-  seconds = 0;
-  currentQuestionIndex = 0;
-  menuEl.classList.add("hide");
-  quizEl.classList.remove("hide");
-  updateScore();
-  startTimer();
-  showQuestion();
+  currentIndex = 0;
+  shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+  document.getElementById("score").innerText = score;
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  loadQuestion();
 }
 
-function startTimer() {
-  clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    seconds++;
-    timerEl.textContent = `${seconds}s`;
+function loadQuestion() {
+  clearInterval(timer);
+  timeLeft = 15;
+  document.getElementById("timer").innerText = timeLeft + "s";
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").innerText = timeLeft + "s";
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      nextQuestion();
+    }
   }, 1000);
-}
 
-function updateScore() {
-  scoreEl.textContent = score;
-}
-
-function showQuestion() {
-  const q = questions[currentQuestionIndex];
-  if (!q) {
-    questionEl.textContent = "Quiz finalizado!";
-    answersEl.innerHTML = `<p>Pontuação final: ${score}</p><button onclick="backToMenu()">Voltar ao Menu</button>`;
-    clearInterval(timerInterval);
+  const current = shuffledQuestions[currentIndex];
+  if (!current) {
+    document.getElementById("question").innerText = "Fim do quiz!";
+    document.getElementById("options").innerHTML = "";
     return;
   }
 
-  questionEl.textContent = q.question;
+  const options = [...current.options].sort(() => 0.5 - Math.random());
+  document.getElementById("question").innerText = current.question;
+  document.getElementById("options").innerHTML = "";
 
-  const shuffledOptions = q.options.sort(() => Math.random() - 0.5);
-  answersEl.innerHTML = "";
-
-  shuffledOptions.forEach(option => {
+  options.forEach(opt => {
     const btn = document.createElement("button");
-    btn.className = "answer-btn";
-    btn.textContent = option;
-    btn.onclick = () => selectAnswer(option, q.correct, btn);
-    answersEl.appendChild(btn);
+    btn.innerText = opt;
+    btn.className = "option";
+    btn.onclick = () => selectAnswer(opt, current.answer, btn);
+    document.getElementById("options").appendChild(btn);
   });
 }
 
 function selectAnswer(selected, correct, btn) {
-  const allBtns = document.querySelectorAll(".answer-btn");
-  allBtns.forEach(b => b.disabled = true);
+  clearInterval(timer);
+  const allOptions = document.querySelectorAll(".option");
+  allOptions.forEach(o => o.disabled = true);
 
   if (selected === correct) {
     btn.classList.add("correct");
     score++;
+    document.getElementById("score").innerText = score;
   } else {
-    btn.classList.add("wrong");
-    allBtns.forEach(b => {
-      if (b.textContent === correct) {
-        b.classList.add("correct");
-      }
+    btn.classList.add("incorrect");
+    allOptions.forEach(o => {
+      if (o.innerText === correct) o.classList.add("correct");
     });
   }
-
-  updateScore();
 }
 
 function nextQuestion() {
-  currentQuestionIndex++;
-  showQuestion();
+  currentIndex++;
+  if (currentIndex >= shuffledQuestions.length) {
+    currentIndex = 0;
+    shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+  }
+  loadQuestion();
 }
 
 function backToMenu() {
-  clearInterval(timerInterval);
-  quizEl.classList.add("hide");
-  menuEl.classList.remove("hide");
+  clearInterval(timer);
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("menu").style.display = "block";
 }
