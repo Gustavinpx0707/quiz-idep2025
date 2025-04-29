@@ -7,22 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="start-container" class="start-container">
+  <div id="menu-screen" class="screen active">
     <h1>🎬 Quiz de Filmes e Séries 📺</h1>
-    <input type="text" id="username" placeholder="Digite seu nome..." />
-    <button id="start-btn">Iniciar Quiz</button>
+    <input type="text" id="player-name" placeholder="Digite seu nome">
+    <button onclick="startGame()">Começar</button>
   </div>
 
-  <div id="quiz-container" class="quiz-container hide">
+  <div id="quiz-screen" class="screen">
     <div class="top-bar">
-      <div id="score">Pontos: 0</div>
-      <button id="menu-btn" class="menu-btn">Menu</button>
-      <div id="timer">Tempo: 15</div>
+      <span id="player-info"></span>
+      <span id="score">Pontos: 0</span>
+      <span id="timer">15s</span>
     </div>
-    <h2 id="player-name"></h2>
-    <div id="question">Pergunta carregando...</div>
-    <div id="answer-buttons" class="btn-grid"></div>
-    <button id="next-btn" class="hide">Próxima</button>
+    <div class="quiz-container">
+      <div id="question">Pergunta carregando...</div>
+      <div id="answer-buttons" class="btn-grid"></div>
+      <button id="next-btn">Próxima</button>
+      <button id="back-btn">Voltar ao Menu</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
