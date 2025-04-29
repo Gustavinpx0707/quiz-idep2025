@@ -88,6 +88,7 @@ button:hover {
 .top-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   font-size: 16px;
   background: #111;
@@ -95,4 +96,9 @@ button:hover {
 
 #next-btn, #back-btn {
   display: none;
+}
+
+#player-name-display, #score, #timer {
+  flex: 1;
+  text-align: center;
 }
