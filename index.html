@@ -7,26 +7,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="menu" class="container">
+  <div id="header">
+    <div><span>👤</span> <span id="username"></span></div>
+    <div><strong>Pontos:</strong> <span id="score">0</span></div>
+    <div><span id="timer">15s</span></div>
+  </div>
+
+  <div class="container" id="menu">
     <h1>Quiz de Filmes 🎬</h1>
-    <input type="text" id="player-name" placeholder="Digite seu nome" />
-    <button onclick="startGame()">Iniciar Quiz</button>
+    <input type="text" id="nameInput" placeholder="Digite seu nome" />
+    <button onclick="startGame()">Iniciar Jogo</button>
   </div>
 
-  <div id="quiz-container" class="container hide">
-    <div class="top-bar">
-      <div class="info"><span class="icon">👤</span><span id="name-display"></span></div>
-      <div class="info">Pontos: <span id="score">0</span></div>
-      <div class="info" id="timer">0s</div>
-    </div>
-    <div id="question">Pergunta carregando...</div>
-    <div id="answers"></div>
-    <div class="button-row">
-      <button id="next-btn" onclick="nextQuestion()">Próxima</button>
-      <button id="back-btn" onclick="backToMenu()">Voltar ao Menu</button>
+  <div class="container" id="quiz" style="display: none;">
+    <h2 id="question">Pergunta carregando...</h2>
+    <div id="options"></div>
+    <div class="buttons">
+      <button onclick="nextQuestion()">Próxima</button>
+      <button onclick="backToMenu()">Voltar ao Menu</button>
     </div>
   </div>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
