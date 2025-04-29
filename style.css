@@ -1,35 +1,60 @@
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background: #1c1c1c;
   color: #ffffff;
-  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.screen {
+  display: none;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  text-align: center;
+  flex-direction: column;
 }
 
-.start-container, .quiz-container {
+.screen.active {
+  display: flex;
+}
+
+.quiz-container {
   background: #2c2c2c;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   width: 90%;
   max-width: 600px;
-  text-align: center;
 }
 
 h1 {
   margin-bottom: 20px;
 }
 
-input#username {
+input {
   padding: 10px;
-  margin-bottom: 15px;
-  width: 80%;
+  font-size: 16px;
   border-radius: 8px;
   border: none;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+button {
+  padding: 12px 20px;
   font-size: 16px;
+  background: #5c6bc0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #3949ab;
 }
 
 .btn-grid {
@@ -38,70 +63,36 @@ input#username {
   margin: 20px 0;
 }
 
-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  background: #5c6bc0;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #3949ab;
-}
-
 .correct {
-  animation: correctPulse 0.5s ease forwards;
+  animation: correctPulse 0.4s ease-in-out;
+  background: #4caf50 !important;
 }
 
 .wrong {
-  animation: wrongShake 0.5s ease forwards;
+  animation: wrongShake 0.4s ease-in-out;
+  background: #e53935 !important;
 }
 
-#next-btn {
-  margin-top: 20px;
-}
-
-.hide {
-  display: none;
-}
-
-/* Top bar com Timer, Score e Menu */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-#score {
-  font-weight: bold;
-}
-
-/* Botão Menu */
-.menu-btn {
-  background: #d32f2f;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
-.menu-btn:hover {
-  background: #b71c1c;
-}
-
-/* Animações */
 @keyframes correctPulse {
-  0% { background-color: #4caf50; }
-  50% { background-color: #81c784; }
-  100% { background-color: #4caf50; }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 @keyframes wrongShake {
-  0%, 100% { background-color: #e53935; }
-  50% { background-color: #ef5350; }
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #111;
+}
+
+#next-btn, #back-btn {
+  display: none;
 }
