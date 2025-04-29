@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quiz de Filmes e Séries</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz de Filmes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="menu-screen" class="screen active">
-    <h1>🎬 Quiz de Filmes e Séries 📺</h1>
-    <input type="text" id="player-name" placeholder="Digite seu nome">
-    <button onclick="startGame()">Começar</button>
+  <div id="menu" class="container">
+    <h1>Quiz de Filmes 🎬</h1>
+    <input type="text" id="player-name" placeholder="Digite seu nome" />
+    <button onclick="startGame()">Iniciar Quiz</button>
   </div>
 
-  <div id="quiz-screen" class="screen">
+  <div id="quiz-container" class="container hide">
     <div class="top-bar">
-      <div id="player-name-display"></div>
-      <div id="score">Pontos: 0</div>
-      <div id="timer">15s</div>
+      <div class="info"><span class="icon">👤</span><span id="name-display"></span></div>
+      <div class="info">Pontos: <span id="score">0</span></div>
+      <div class="info" id="timer">0s</div>
     </div>
-    <div class="quiz-container">
-      <div id="question">Pergunta carregando...</div>
-      <div id="answer-buttons" class="btn-grid"></div>
-      <button id="next-btn">Próxima</button>
-      <button id="back-btn">Voltar ao Menu</button>
+    <div id="question">Pergunta carregando...</div>
+    <div id="answers"></div>
+    <div class="button-row">
+      <button id="next-btn" onclick="nextQuestion()">Próxima</button>
+      <button id="back-btn" onclick="backToMenu()">Voltar ao Menu</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
