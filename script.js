@@ -92,10 +92,20 @@ function selectAnswer(selected, correct, btn) {
 function nextQuestion() {
   currentIndex++;
   if (currentIndex >= shuffledQuestions.length) {
-    currentIndex = 0;
-    shuffledQuestions = questions.sort(() => 0.5 - Math.random());
+    endGame();
+  } else {
+    loadQuestion();
   }
-  loadQuestion();
+}
+
+function endGame() {
+  clearInterval(timer);
+  document.getElementById("question").innerText = `Fim do quiz! Você fez ${score} ponto${score === 1 ? '' : 's'}!`;
+  document.getElementById("options").innerHTML = "";
+  document.querySelector(".buttons").innerHTML = `
+    <button onclick="startGame()">Reiniciar Quiz</button>
+    <button onclick="backToMenu()">Voltar ao Menu</button>
+  `;
 }
 
 function backToMenu() {
