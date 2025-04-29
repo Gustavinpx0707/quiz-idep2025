@@ -1,104 +1,114 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #1c1c1c;
-  color: #ffffff;
   margin: 0;
-  padding: 0;
-}
-
-.screen {
-  display: none;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  text-align: center;
+  min-height: 100vh;
   flex-direction: column;
 }
 
-.screen.active {
-  display: flex;
-}
-
-.quiz-container {
-  background: #2c2c2c;
+.container {
+  background-color: #2d2d2d;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 12px #00000088;
+  text-align: center;
   width: 90%;
   max-width: 600px;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-input {
+input[type="text"] {
   padding: 10px;
   font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  margin-bottom: 20px;
   width: 80%;
+  margin: 20px 0;
+  border-radius: 6px;
+  border: none;
 }
 
 button {
-  padding: 12px 20px;
+  padding: 10px 20px;
+  margin: 10px 5px;
   font-size: 16px;
-  background: #5c6bc0;
-  color: white;
   border: none;
   border-radius: 8px;
+  background-color: #5c6bc0;
+  color: white;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #3949ab;
+  background-color: #7986cb;
 }
 
-.btn-grid {
-  display: grid;
-  gap: 10px;
+#answers {
   margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-btn {
+  padding: 12px;
+  background-color: #3f51b5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: 0.2s ease;
+  font-size: 16px;
+}
+
+.answer-btn:hover {
+  opacity: 0.9;
 }
 
 .correct {
-  animation: correctPulse 0.4s ease-in-out;
-  background: #4caf50 !important;
+  background-color: #4caf50 !important;
+  animation: correctFlash 0.3s ease;
 }
 
 .wrong {
-  animation: wrongShake 0.4s ease-in-out;
-  background: #e53935 !important;
+  background-color: #f44336 !important;
+  animation: wrongFlash 0.3s ease;
 }
 
-@keyframes correctPulse {
+@keyframes correctFlash {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
-@keyframes wrongShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+@keyframes wrongFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.hide {
+  display: none;
 }
 
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  font-size: 16px;
+  margin-bottom: 20px;
   background: #111;
+  padding: 10px 20px;
+  border-radius: 8px;
 }
 
-#next-btn, #back-btn {
-  display: none;
+.info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-#player-name-display, #score, #timer {
-  flex: 1;
-  text-align: center;
+.icon {
+  color: #9575cd;
 }
